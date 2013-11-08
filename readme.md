@@ -1,8 +1,6 @@
-###colladatester
+###Colladatester
 
-Allows you to test your collada in Threejs by simply dragging the collada and your texture files into the browser.
-
-You can also use the filemenu.
+Allows you to test your collada in Threejs by simply dragging the collada and your texture files into the browser, alternately you can use the filemenu.
 
 Supports colladas with and without textures.
 
