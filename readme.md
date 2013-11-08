@@ -1,25 +1,24 @@
-#colladatester
+###colladatester
 
-Allows you to test your collada in Threejs. 
+Allows you to test your collada in Threejs by simply dragging the collada and your texture files into the browser.
 
-Supports colladas with or without textures.
+You can also use the filemenu.
 
-Simply drag the collada and your textures files into the browser or by using the filemenu.
+Supports colladas with and without textures.
 
-Check the [live example](http://abumarkub.org/colladatester).
+
+Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://www.youtube.com/edit?ns=1&o=U&video_id=5__SjcdBj8E).
 
 Makes use of:
 
-[Threejs](http://threejs.org)
-[ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)
-[dat.gui](https://code.google.com/p/dat-gui/)
+[Threejs](http://threejs.org)   
+[ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)  
+[dat.gui](https://code.google.com/p/dat-gui/)  
 
 
 I made some small changes to the original ColladaLoader of [Tim Knip](http://techblog.floorplanner.com/).
 
-```
-#!javascript
-
+```javascript
 // from line 124
 if ( url !== undefined ) {
 
@@ -42,9 +41,7 @@ if ( url !== undefined) {
 
 ```
 
-```
-#!javascript
-
+```javascript
 // on line 3168
 	this.transparent.color.b)
 	/ 3 * this.transparency;
@@ -54,9 +51,7 @@ if ( url !== undefined) {
 	this.transparent.color.b) / 3 * this.transparency;
 ```
 
-```
-#!javascript
-
+```javascript
 // on line 3202
 if (image) {
 
