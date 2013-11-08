@@ -87,7 +87,7 @@ var scope = scope || {};
 		},false);
 
 
-		colladaLoader = new THREE.ColladaLoader();
+		//colladaLoader = new THREE.ColladaLoader();
 		fileReader = new FileReader();
 		xmlParser = new DOMParser();
 		
@@ -169,6 +169,8 @@ var scope = scope || {};
 				nodes[imageName].textContent = textures[imageName];
 			}
 		}
+
+		colladaLoader = new THREE.ColladaLoader();
 		
 		colladaLoader.parse(colladaXml, function(collada){
 			model = collada.scene;
