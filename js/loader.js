@@ -170,6 +170,7 @@ var scope = scope || {};
 			}
 		}
 
+		// colladaLoader needs to be instantiated every time you load a model
 		colladaLoader = new THREE.ColladaLoader();
 		
 		colladaLoader.parse(colladaXml, function(collada){

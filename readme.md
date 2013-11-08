@@ -5,7 +5,7 @@ Allows you to test your collada in Threejs by simply dragging the collada and yo
 Supports colladas with and without textures.
 
 
-Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://www.youtube.com/watch?v=5__SjcdBj8E).
+Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://youtu.be/KedAyFU85ps).
 
 Makes use of:
 
