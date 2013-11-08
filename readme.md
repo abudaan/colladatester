@@ -7,13 +7,13 @@ You can also use the filemenu.
 Supports colladas with and without textures.
 
 
-Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://www.youtube.com/edit?ns=1&o=U&video_id=5__SjcdBj8E).
+Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://www.youtube.com/watch?v=5__SjcdBj8E).
 
 Makes use of:
 
-[Threejs](http://threejs.org)   
-[ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)  
-[dat.gui](https://code.google.com/p/dat-gui/)  
+* [Threejs](http://threejs.org)   
+* [ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)  
+* [dat.gui](https://code.google.com/p/dat-gui/)  
 
 
 I made some small changes to the original ColladaLoader of [Tim Knip](http://techblog.floorplanner.com/).
@@ -40,19 +40,21 @@ if ( url !== undefined) {
 }
 
 ```
-
+  
+  
 ```javascript
-// on line 3168
+// from line 3168
 	this.transparent.color.b)
 	/ 3 * this.transparency;
 
 
-// changed to prevent breaking the syntax highlighter in SublimeText:
+// changed to prevent breaking the syntax highlighting in SublimeText:
 	this.transparent.color.b) / 3 * this.transparency;
 ```
-
+  
+  
 ```javascript
-// on line 3202
+// from line 3202
 if (image) {
 
 	var texture = THREE.ImageUtils.loadTexture(baseUrl + image.init_from);
