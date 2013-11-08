@@ -210,7 +210,7 @@ var scope = scope || {};
 		ctrlWorldRotZ.setValue(45);
 
 		ctrlLightPosX.setValue(0);
-		ctrlLightPosX.setValue(1000);
+		ctrlLightPosY.setValue(1000);
 		ctrlLightPosZ.setValue(200);
 
 		ctrlCameraPosX.setValue(0);
