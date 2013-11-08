@@ -26,6 +26,7 @@ if ( url !== undefined ) {
 
 }
 
+
 // changed to support calling ColladaLoader.parse() without url:
 if ( url !== undefined) {
 
