@@ -7,6 +7,8 @@ Supports colladas with and without textures.
 
 Check the [live example](http://abumarkub.org/colladatester) or watch the [screencast](http://youtu.be/KedAyFU85ps).
 
+Note that if you don't see the collada you might need to scale up the model with the scale slider.
+
 Makes use of:
 
 * [Threejs](http://threejs.org)   
