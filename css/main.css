@@ -1,24 +1,21 @@
 html{
-	overflow: hidden;
+  overflow: hidden;
 }
 body{
-	background-color: #ffffff;
+  background-color: #ffffff;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 5px;
 }
-#drop{
-	position: absolute;
-	z-index: 2;
-	width: 150px;
-	height: 150px;
-	background-color: #ffffff;
-	border: 1px dotted #5E79D3;
-	line-height: 20px;
-	text-align: center;
-	font-family: sans;
-	font-size: 12px;
-	color: #5e79d3;
+span{
+}
+input[type='button']{
+  font-family: monospace;
+  font-size: 12px;
 }
 #hidden{
-	width: 0px;
-	height: 0px;
-	overflow: hidden;
+  display: none;
+}
+#load-files{
+  min-height: 20px;
 }

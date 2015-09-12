@@ -1,189 +1,91 @@
-var scope = scope || {};
+'use strict';
+
+import createModels from 'models3d';
+
+export default function init(callback){
+
+  let textures;
+  let colladaModels;
+  let jsonModels;
+  let loadData = document.getElementById('load-file');
+  let loadButton = document.getElementById('load-button');
+  let fileReader = new FileReader();
+  let fileList, numFiles, currentIndex;
+  let fileType, fileName;
 
 
-(function(){
+  // drag and drop
+  document.addEventListener('dragover', function(e){
+    e.preventDefault();
+  },false);
 
-	'use strict';
+  document.addEventListener('dragenter', function(e){
+    e.preventDefault();
+  },false);
 
-	var divDrop,
-		divInstruction,
+  document.addEventListener('dragleave', function(e){
+    e.preventDefault();
+  },false);
 
-		msg = {
-			init: 'drop your collada and texture files here',
-			processing: 'processing collada',
-			error: 'something went wrong'
-		},
-		
-		plane,
-		model,
+  document.addEventListener('drop', function(e){
+    e.preventDefault();
+    loadFiles(e.dataTransfer.files);
+  }, false);
 
-		fileList,
-		numFiles,
-		currentIndex,
-		
-		fileName,
-		fileType,
+  // file menu
+  loadData.addEventListener('change',function(e){
+    e.preventDefault();
+    loadFiles(e.target.files);
+  },false);
 
-		textures,
-		colladaXml,
+  loadButton.addEventListener('click',function(){
+    loadData.click();
+  },false);
 
-		colladaLoader,
-		fileReader,
-		xmlParser,
-
-		parseCollada,
-		loadFiles,
-		loadFile,
-		init;
-
-
-	init = function(parent3D){
-
-		plane = parent3D;
-
-		var loadData = document.getElementById('load-file'),
-			loadButton = document.getElementById('load-button');		
-
-		divDrop = document.getElementById('drop');
-		divInstruction = document.getElementById('instruction');
-		divInstruction.innerHTML = msg.init;
-
-		
-		// drag and drop
-		divDrop.addEventListener('dragover', function(e){
-			e.preventDefault();
-			divDrop.style.backgroundColor = '#5e79d3';
-			divDrop.style.color = '#ffffff';
-		},false);
-		
-		divDrop.addEventListener('dragenter', function(e){
-			e.preventDefault();
-			divDrop.style.backgroundColor = '#5e79d3';
-			divDrop.style.color = '#ffffff';
-		},false);
-
-		divDrop.addEventListener('dragleave', function(e){
-			e.preventDefault();
-			divDrop.style.backgroundColor = '#ffffff';
-			divDrop.style.color = '#5e79d3';
-		},false);
-		
-		divDrop.addEventListener('drop', function(e){
-			e.preventDefault();
-			divDrop.style.backgroundColor = '#F18C73';
-			divInstruction.innerHTML = msg.processing;
-			loadFiles(e.dataTransfer.files);
-		}, false);
-
-		
-		// file menu
-		loadData.addEventListener('change',function(e){
-			e.preventDefault();
-			loadFiles(loadData.files);
-		},false);
-
-		loadButton.addEventListener('click',function(e){
-			loadData.click();
-		},false);
+  fileReader.addEventListener('load', function(){
+    if(fileType === 'image'){
+      textures.set(fileName, fileReader.result);
+    }else if(fileType === 'collada'){
+      colladaModels.set(fileName, fileReader.result);
+    }else if(fileType === 'json'){
+      jsonModels.set(fileName, JSON.parse(fileReader.result));
+    }
+    loadFile();
+  }, false);
 
 
-		//colladaLoader = new THREE.ColladaLoader();
-		fileReader = new FileReader();
-		xmlParser = new DOMParser();
-		
-		fileReader.addEventListener('load', function(e){
-
-			if(fileType === 'image'){
-				textures[fileName] = fileReader.result;
-			}else{
-				colladaXml = xmlParser.parseFromString(fileReader.result, 'application/xml');
-			}
-
-			loadFile();					
-		
-		}, false);
-	};
+  function loadFiles(files){
+    textures = new Map();
+    colladaModels = new Map();
+    jsonModels = new Map();
+    fileList = files;
+    numFiles = fileList.length;
+    currentIndex = -1;
+    loadFile();
+  }
 
 
-	loadFiles = function(files){
+  function loadFile(){
+    if(++currentIndex >= numFiles){
+      createModels(colladaModels, jsonModels, textures, callback);
+      return;
+    }
 
-		textures = {};
-		fileList = files;
-		numFiles = files.length;
-		currentIndex = -1;
+    let file = fileList[currentIndex];
+    fileName = file.name;
+    fileType = file.type || fileName.toLowerCase().substring(fileName.indexOf('.') + 1);
+    //fileName = fileName.substring(0, fileName.indexOf('.'));
+    console.log(fileName, fileType);
 
-		//remove currently loaded model
-		plane.children.forEach(function(child){
-			plane.remove(child);
-		});		
-
-		loadFile();
-	};
-
-
-	loadFile = function(){
-		var file;
-
-		if(++currentIndex >= numFiles){
-			parseCollada();
-			return;
-		}
-
-		file = fileList[currentIndex];
-		fileName = file.name;
-		fileType = file.type;
-
-		if(fileType.indexOf('image') !== -1){
-			fileType = 'image';
-			fileReader.readAsDataURL(file);
-		}else if(fileName.toLowerCase().indexOf('dae') !== -1){
-			fileType = 'xml';
-			fileReader.readAsText(file);
-		}
-		
-		fileName = fileName.substring(0, fileName.indexOf('.'));
-	};
-
-
-	parseCollada = function(){
-
-		var results = colladaXml.evaluate('//dae:library_images/dae:image/dae:init_from/text()', colladaXml, function(){
-				return 'http://www.collada.org/2005/11/COLLADASchema';
-			}, XPathResult.ANY_TYPE, null),
-			node,
-			nodes = {},
-			imageName;
-				
-		while((node = results.iterateNext()) !== null){
-			imageName = node.textContent;
-			if(imageName.indexOf('/') !== -1){
-				imageName = imageName.substring(imageName.lastIndexOf('/') + 1, imageName.indexOf('.'));
-			}else{
-				imageName = imageName.substring(0, imageName.indexOf('.'));
-			}
-			nodes[imageName] = node;
-		}
-
-		for(imageName in nodes){
-			if(nodes.hasOwnProperty(imageName)){
-				nodes[imageName].textContent = textures[imageName];
-			}
-		}
-
-		// colladaLoader needs to be instantiated every time you load a model
-		colladaLoader = new THREE.ColladaLoader();
-		
-		colladaLoader.parse(colladaXml, function(collada){
-			model = collada.scene;
-			divDrop.style.backgroundColor = '#ffffff';
-			divDrop.style.color = '#5e79d3';
-			divInstruction.innerHTML = msg.init;
-			plane.add(model);
-			scope.resetControls(model);
-		});
-	};
-
-	
-	scope.initLoader = init;
-
-}());
+    if(fileType.indexOf('image') !== -1){
+      fileType = 'image';
+      fileReader.readAsDataURL(file);
+    }else if(fileType === 'dae'){
+      fileType = 'collada';
+      fileReader.readAsText(file);
+    }else if(fileType === 'json' || fileType === 'js' || fileType.indexOf('json') !== -1){
+      fileType = 'json';
+      fileReader.readAsText(file);
+    }
+  }
+}
