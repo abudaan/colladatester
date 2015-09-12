@@ -44,6 +44,10 @@ export default function init(colladasModels, jsonModels, textures, callback){
         });
         model = group;
       }else{
+        console.log('no object');
+        if(hasTextures){
+          fixTextures(model);
+        }
         model.scale.set(1,1,1);
       }
       //console.log(model);
