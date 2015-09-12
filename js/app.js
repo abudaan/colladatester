@@ -9,6 +9,7 @@ window.onload = function(){
   scene3d = createScene3D();
   document.body.appendChild(scene3d.domElement);
   createLoader(function(model){
+    //console.log(model);
     scene3d.add(model);
   });
 
