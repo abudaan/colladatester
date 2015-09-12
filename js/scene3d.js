@@ -20,7 +20,7 @@ export default function init() {
   camera = new THREE.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
   camera.position.z = 500;
   camera.position.x = 0;
-  camera.position.y = 200;
+  camera.position.y = 300;
   camera.lookAt(new THREE.Vector3(0,0,0));
 
   spot = new THREE.SpotLight(0xffffff, 1);
@@ -37,6 +37,7 @@ export default function init() {
 
   world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({opacity: 0.5, color: 0x003300}));
   world.rotation.x -= Math.PI/2;
+  world.position.y = -50;
   world.position.z = 50;
   world.receiveShadow = true;
   scene.add(world);
