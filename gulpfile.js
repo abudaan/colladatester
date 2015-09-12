@@ -46,7 +46,7 @@ var config = {
     },
 
     dest: { // destination folders
-        scripts: 'build',
+        scripts: 'build'
     }
 };
 
@@ -205,12 +205,6 @@ gulp.task('minify', ['libs', 'scripts'], function () {
             .pipe(uglify())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(config.dest.scripts))
-            .pipe(livereload()),
-        gulp.src(config.dest.libs + "/*.js")
-            .pipe(plumber())
-            .pipe(uglify())
-            .pipe(rename({suffix: '.min'}))
-            .pipe(gulp.dest(config.dest.libs))
             .pipe(livereload())
     );
 });
