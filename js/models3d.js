@@ -106,9 +106,9 @@ function fixTextures(model){
     if(child.material && child.material.map) {
       //console.log(child.material.map);
       child.material.emissive = new THREE.Color(0,0,0);
-      child.material.map.wrapS = THREE.ClampToEdgeWrapping;
-      child.material.map.wrapT = THREE.ClampToEdgeWrapping;
-      child.material.map.minFilter = THREE.LinearFilter;
+      // child.material.map.wrapS = THREE.ClampToEdgeWrapping;
+      // child.material.map.wrapT = THREE.ClampToEdgeWrapping;
+      // child.material.map.minFilter = THREE.LinearFilter;
       child.material.needsUpdate = true;
     }
   });
