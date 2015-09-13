@@ -6,8 +6,7 @@ import ObjectLoader2 from 'lib/ObjectLoader2';
 
 let baseUrl = 'undefined';
 
-export default function init(colladasModels, jsonModels, textures, callback){
-
+export default function init(colladasModels, jsonModels, _textures, callback){
   let loader, iterator, model, hasTextures;
 
   if(colladasModels.size >= 1){
@@ -23,6 +22,7 @@ export default function init(colladasModels, jsonModels, textures, callback){
       if(hasTextures){
         fixTextures(model);
       }
+      model.toJSON();
       callback(model);
     });
   }else if(jsonModels.size >= 1){
@@ -102,16 +102,31 @@ function getTexturesFromJsonModel(json, textures){
 
 
 function fixTextures(model){
+  let textures = new Map();
   model.traverse(function(child){
     if(child.material && child.material.map) {
       //console.log(child.material.map);
       child.material.emissive = new THREE.Color(0,0,0);
-      child.material.map.wrapS = THREE.ClampToEdgeWrapping;
-      child.material.map.wrapT = THREE.ClampToEdgeWrapping;
-      child.material.map.minFilter = THREE.LinearFilter;
+      //child.material.map.wrapS = THREE.ClampToEdgeWrapping;
+      //child.material.map.wrapT = THREE.ClampToEdgeWrapping;
+      //child.material.map.minFilter = THREE.LinearFilter;
       child.material.needsUpdate = true;
+      textures.set(child.material.uuid, child.material.map);
     }
   });
+  return textures;
+}
+
+
+function saveAs(filename, data){
+  let blob = new Blob([data], {type: 'text/plain'});
+  let objectURL = URL.createObjectURL(blob);
+  let link = document.createElement('a');
+
+  link.href = objectURL;
+  link.download = filename;
+  link.target = '_blank';
+  link.click();
 }
 
 

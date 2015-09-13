@@ -56,7 +56,7 @@ THREE.ObjectLoader2.prototype = {
       if ( onLoad !== undefined ) onLoad( object );
 
     } );
-    //console.log(images);
+    console.log(images);
     var textures  = this.parseTextures( json.textures, images );
     var materials = this.parseMaterials( json.materials, textures );
     var object = this.parseObject( json.object, geometries, materials );
@@ -316,6 +316,7 @@ THREE.ObjectLoader2.prototype = {
         scope.manager.itemStart( url );
 
         if(THREE.Cache.get(url)){
+          console.log('cached!');
           return THREE.Cache.get(url);
         }else{
           return loader.load( url, function () {

@@ -1,7 +1,7 @@
 'use strict';
 
-import createScene3D from './scene3d';
-import createLoader from './loader';
+import createScene3D from 'scene3d';
+import createLoader from 'loader';
 
 let scene3d;
 

@@ -14,6 +14,10 @@ export default function init(callback){
   let fileType, fileName;
 
 
+createModels(null, null, null, callback);
+
+
+
   // drag and drop
   document.addEventListener('dragover', function(e){
     e.preventDefault();

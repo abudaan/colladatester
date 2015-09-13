@@ -31,6 +31,9 @@ THREE.ColladaLoader = function () {
 	var baseUrl;
 	var morphs;
 	var skins;
+	var numTextures;
+	var listeners = {};
+	var textureLoadedEvent = {'type': 'texturesloaded'};
 
 	var flip_uv = true;
 	var preferredShading = THREE.SmoothShading;
@@ -131,7 +134,7 @@ THREE.ColladaLoader = function () {
 	}
 
 	function parse( doc, callBack, url ) {
-
+		numTextures = 0;
 		COLLADA = doc;
 		callBack = callBack || readyCallbackFunc;
 
@@ -3724,7 +3727,7 @@ THREE.ColladaLoader = function () {
 											loadTextureImage( texture, url );
 
 										}
-
+										texture.image = url;
 										texture.wrapS = cot.texOpts.wrapU ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;
 										texture.wrapT = cot.texOpts.wrapV ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;
 										texture.offset.x = cot.texOpts.offsetU;
@@ -5196,7 +5199,7 @@ THREE.ColladaLoader = function () {
 	};
 
 	function loadTextureImage ( texture, url ) {
-
+		numTextures++;
 		var loader = new THREE.ImageLoader();
 		//console.log(url);
 
@@ -5204,6 +5207,11 @@ THREE.ColladaLoader = function () {
 
 			texture.image = image;
 			texture.needsUpdate = true;
+
+			numTextures--;
+			if(numTextures === 0){
+				dispatchEvent(textureLoadedEvent);
+			}
 
 		} );
 
@@ -5500,6 +5508,15 @@ THREE.ColladaLoader = function () {
 
 	};
 
+
+	function dispatchEvent(event){
+		var callbacks = listeners[event.type];
+		callbacks.forEach(function(cb){
+			cb();
+		});
+	}
+
+
 	return {
 
 		load: load,
@@ -5507,8 +5524,29 @@ THREE.ColladaLoader = function () {
 		setPreferredShading: setPreferredShading,
 		applySkin: applySkin,
 		geometries : geometries,
-		options: options
-
+		options: options,
+		addEventListener: function(type, listener){
+			if(listeners[type] === undefined){
+				listeners[type] = [];
+			}
+			//var uuid = THREE.Math.generateUUID();
+			listeners[type].push(listener);
+		},
+		removeEventListener: function(type, listener){
+			var callbacks, index;
+			if(listeners[type] !== undefined){
+				callbacks = listeners[type];
+			}
+			if(callbacks === undefined){
+				return;
+			}
+			callbacks.forEach(function(cb,i){
+				if(cb === listener){
+					index = i;
+				}
+			});
+			listeners[type] =  callbacks.splice(index, 1);
+		}
 	};
 
 };
