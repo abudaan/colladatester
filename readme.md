@@ -1,4 +1,4 @@
-###colladatester
+### colladatester
 
 Allows you to test your collada in Threejs by simply dragging the collada and your texture files into the browser, alternately you can use the filemenu.
 
@@ -11,9 +11,9 @@ Note that if you don't see the collada you might need to scale up the model with
 
 Makes use of:
 
-* [Threejs](http://threejs.org)   
-* [ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)  
-* [dat.gui](https://code.google.com/p/dat-gui/)  
+* [Threejs](http://threejs.org)
+* [ColladaLoader](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js)
+* [dat.gui](https://code.google.com/p/dat-gui/)
 
 
 I made some small changes to the original ColladaLoader of [Tim Knip](http://techblog.floorplanner.com/).
@@ -41,8 +41,8 @@ if ( url !== undefined) {
 }
 
 ```
-  
-  
+
+
 ```javascript
 // from line 3168
 	this.transparent.color.b)
@@ -52,8 +52,8 @@ if ( url !== undefined) {
 // changed to prevent breaking the syntax highlighting in SublimeText:
 	this.transparent.color.b) / 3 * this.transparency;
 ```
-  
-  
+
+
 ```javascript
 // from line 3202
 if (image) {
@@ -75,18 +75,18 @@ if (image) {
 
 // changed to support inline textures:
 if (image) {
-	
+
 	var texture;
 
 	if(image.init_from.indexOf('data:') === 0){
-	
+
 		var texture = new THREE.Texture();
 		var img = new Image();
 		img.src = image.init_from;
-		texture.needsUpdate = true;									
-	
+		texture.needsUpdate = true;
+
 	}else{
-	
+
 		texture = THREE.ImageUtils.loadTexture(baseUrl + image.init_from);
 	}
 
