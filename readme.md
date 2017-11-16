@@ -1,4 +1,4 @@
-###colladatester
+### colladatester
 
 Allows you to test your collada in Threejs by simply dragging the collada and your texture files into the browser, alternately you can use the filemenu.
 
