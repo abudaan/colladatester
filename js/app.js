@@ -5,10 +5,10 @@ import createLoader from './loader';
 
 let scene3d;
 
-window.onload = function(){
+window.onload = function () {
   scene3d = createScene3D();
   document.body.appendChild(scene3d.domElement);
-  createLoader(function(model){
+  createLoader(function (model) {
     //console.log(model);
     scene3d.add(model);
   });
@@ -18,7 +18,7 @@ window.onload = function(){
 };
 
 
-function resize(){
+function resize() {
   let width = window.innerWidth;
   let height = window.innerHeight;
   scene3d.resize(width, height);

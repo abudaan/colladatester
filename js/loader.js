@@ -2,7 +2,7 @@
 
 import createModels from 'models3d';
 
-export default function init(callback){
+export default function init(callback) {
 
   let textures;
   let colladaModels;
@@ -15,46 +15,46 @@ export default function init(callback){
 
 
   // drag and drop
-  document.addEventListener('dragover', function(e){
+  document.addEventListener('dragover', function (e) {
     e.preventDefault();
-  },false);
+  }, false);
 
-  document.addEventListener('dragenter', function(e){
+  document.addEventListener('dragenter', function (e) {
     e.preventDefault();
-  },false);
+  }, false);
 
-  document.addEventListener('dragleave', function(e){
+  document.addEventListener('dragleave', function (e) {
     e.preventDefault();
-  },false);
+  }, false);
 
-  document.addEventListener('drop', function(e){
+  document.addEventListener('drop', function (e) {
     e.preventDefault();
     loadFiles(e.dataTransfer.files);
   }, false);
 
   // file menu
-  loadData.addEventListener('change',function(e){
+  loadData.addEventListener('change', function (e) {
     e.preventDefault();
     loadFiles(e.target.files);
-  },false);
+  }, false);
 
-  loadButton.addEventListener('click',function(){
+  loadButton.addEventListener('click', function () {
     loadData.click();
-  },false);
+  }, false);
 
-  fileReader.addEventListener('load', function(){
-    if(fileType === 'image'){
+  fileReader.addEventListener('load', function () {
+    if (fileType === 'image') {
       textures.set(fileName, fileReader.result);
-    }else if(fileType === 'collada'){
+    } else if (fileType === 'collada') {
       colladaModels.set(fileName, fileReader.result);
-    }else if(fileType === 'json'){
+    } else if (fileType === 'json') {
       jsonModels.set(fileName, JSON.parse(fileReader.result));
     }
     loadFile();
   }, false);
 
 
-  function loadFiles(files){
+  function loadFiles(files) {
     textures = new Map();
     colladaModels = new Map();
     jsonModels = new Map();
@@ -65,8 +65,8 @@ export default function init(callback){
   }
 
 
-  function loadFile(){
-    if(++currentIndex >= numFiles){
+  function loadFile() {
+    if (++currentIndex >= numFiles) {
       createModels(colladaModels, jsonModels, textures, callback);
       return;
     }
@@ -77,13 +77,13 @@ export default function init(callback){
     //fileName = fileName.substring(0, fileName.indexOf('.'));
     console.log(fileName, fileType);
 
-    if(fileType.indexOf('image') !== -1){
+    if (fileType.indexOf('image') !== -1) {
       fileType = 'image';
       fileReader.readAsDataURL(file);
-    }else if(fileType === 'dae'){
+    } else if (fileType === 'dae') {
       fileType = 'collada';
       fileReader.readAsText(file);
-    }else if(fileType === 'json' || fileType === 'js' || fileType.indexOf('json') !== -1){
+    } else if (fileType === 'json' || fileType === 'js' || fileType.indexOf('json') !== -1) {
       fileType = 'json';
       fileReader.readAsText(file);
     }

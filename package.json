@@ -33,7 +33,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "three": "^0.71.0",
+    "three": "^0.73.0",
     "lodash": "^3.10.1"
   }
 }
