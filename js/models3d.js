@@ -2,6 +2,7 @@
 
 import THREE from 'three';
 import ColladaLoader from 'lib/ColladaLoader';
+// import ColladaLoader from 'three-collada-loader';
 import ObjectLoader2 from 'lib/ObjectLoader2';
 
 let baseUrl = 'undefined';
@@ -14,6 +15,7 @@ export default function init(colladasModels, jsonModels, textures, callback) {
 
   if (colladasModels.size >= 1) {
     loader = new THREE.ColladaLoader();
+    // loader = new ColladaLoader();
     iterator = colladasModels.entries();
     let parser = new DOMParser();
     model = parser.parseFromString(iterator.next().value[1], 'text/xml');
@@ -30,6 +32,7 @@ export default function init(colladasModels, jsonModels, textures, callback) {
   } else if (jsonModels.size >= 1) {
     iterator = jsonModels.entries();
     model = iterator.next().value[1];
+    console.log(model);
     hasTextures = getTexturesFromJsonModel(model, textures);
     if (model.object !== undefined) {
       loader = new THREE.ObjectLoader2();
@@ -66,6 +69,8 @@ function getTexturesFromCollada(xml, textures) {
     function () {
       return 'http://www.collada.org/2005/11/COLLADASchema';
     }, XPathResult.ANY_TYPE, null);
+
+  // console.log(results);
 
   let node;
   let hasTextures;

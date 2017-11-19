@@ -1,5 +1,6 @@
 'use strict';
 
+import THREE from 'three';
 import createModels from 'models3d';
 
 export default function init(callback) {
@@ -43,6 +44,7 @@ export default function init(callback) {
   }, false);
 
   fileReader.addEventListener('load', function () {
+    console.log('loaded', fileType);
     if (fileType === 'image') {
       textures.set(fileName, fileReader.result);
     } else if (fileType === 'collada') {
@@ -66,8 +68,10 @@ export default function init(callback) {
 
 
   function loadFile() {
+    // THREE.Cache.clear();
     if (++currentIndex >= numFiles) {
       createModels(colladaModels, jsonModels, textures, callback);
+      console.log('loading done');
       return;
     }
 
@@ -80,7 +84,8 @@ export default function init(callback) {
     if (fileType.indexOf('image') !== -1) {
       fileType = 'image';
       fileReader.readAsDataURL(file);
-    } else if (fileType === 'dae') {
+    } else if (fileType === 'dae' || fileType.indexOf('collada') !== -1) {
+      //MIME: model/vnd.collada+xml
       fileType = 'collada';
       fileReader.readAsText(file);
     } else if (fileType === 'json' || fileType === 'js' || fileType.indexOf('json') !== -1) {

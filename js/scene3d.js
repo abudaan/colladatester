@@ -13,9 +13,9 @@ export default function init() {
 
   renderer = new THREE.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
   renderer.setClearColor(0xffffff, 1);
-  renderer.shadowMapEnabled = true;
-  renderer.shadowMapSoft = true;
-  renderer.shadowMapType = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.soft = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   camera = new THREE.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
   camera.position.z = 500;
@@ -35,9 +35,10 @@ export default function init() {
   spot.shadowMapHeight = 2048;
   scene.add(spot);
 
-  world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0.5, color: 0x003300 }));
+  // world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0, color: 0x003300 }));
+  world = new THREE.Object3D();
   world.rotation.x -= Math.PI / 2;
-  world.position.y = -50;
+  world.position.y = 50;
   world.position.z = 50;
   world.receiveShadow = true;
   scene.add(world);
