@@ -9,7 +9,7 @@ window.onload = function () {
   // console.log(THREE);
   scene3d = createScene3D();
   document.body.appendChild(scene3d.domElement);
-  createLoader(function (model) {
+  createLoader(scene3d, function (model) {
     //console.log(model);
     scene3d.add(model);
   });

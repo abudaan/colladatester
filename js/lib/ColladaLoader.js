@@ -21,6 +21,11 @@ THREE.ColladaLoader.prototype = {
 
         var scope = this;
 
+        if (url.indexOf('<?xml version="1.0" encoding="utf-8"?>') === 0) {
+            onLoad(scope.parse(url, ''));
+            return;
+        }
+
         var path = THREE.Loader.prototype.extractUrlBase(url);
 
         var loader = new THREE.FileLoader(scope.manager);

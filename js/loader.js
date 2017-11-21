@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import createModels from 'models3d';
 
-export default function init(callback) {
+export default function init(scene3d, callback) {
 
   let textures;
   let colladaModels;
@@ -72,6 +72,9 @@ export default function init(callback) {
     if (++currentIndex >= numFiles) {
       createModels(colladaModels, jsonModels, textures, callback);
       console.log('loading done');
+      setTimeout(() => {
+        scene3d.render();
+      }, 0);
       return;
     }
 

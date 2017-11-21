@@ -26,13 +26,13 @@ export default function init() {
   spot = new THREE.SpotLight(0xffffff, 1);
   spot.position.set(300, 300, 300);
   spot.target.position.set(0, 0, 0);
-  spot.shadowCameraNear = 1;
-  spot.shadowCameraFar = 1024;
+  spot.shadow.camera.near = 1;
+  spot.shadow.camera.far = 1024;
   spot.castShadow = true;
-  spot.shadowDarkness = 0.3;
-  spot.shadowBias = 0.0001;
-  spot.shadowMapWidth = 2048;
-  spot.shadowMapHeight = 2048;
+  // spot.shadowDarkness = 0.3;
+  spot.shadow.bias = 0.0001;
+  spot.shadow.mapSize.width = 2048;
+  spot.shadow.mapSize.height = 2048;
   scene.add(spot);
 
   // world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0, color: 0x003300 }));
