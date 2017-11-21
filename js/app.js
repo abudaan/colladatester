@@ -6,6 +6,7 @@ import createLoader from './loader';
 let scene3d;
 
 window.onload = function () {
+  // console.log(THREE);
   scene3d = createScene3D();
   document.body.appendChild(scene3d.domElement);
   createLoader(function (model) {

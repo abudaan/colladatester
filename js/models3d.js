@@ -1,6 +1,6 @@
 'use strict';
 
-import THREE from 'three';
+import * as THREE from 'three';
 import ColladaLoader from 'lib/ColladaLoader';
 // import ColladaLoader from 'three-collada-loader';
 import ObjectLoader2 from 'lib/ObjectLoader2';

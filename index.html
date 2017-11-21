@@ -1,23 +1,29 @@
 <!doctype html>
 <html>
-	<head>
-		<title>colladatester</title>
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-		<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 
-		<script src='build/app.js'></script>
+<head>
+	<title>colladatester</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+	<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
+	<!-- <script src="build/three.js"></script> -->
+	<!-- <script src="js/lib/ColladaLoader.js"></script> -->
+	<!-- <script src="js/lib/OrbitControls.js"></script> -->
+	<!-- <script src="js/lib/ObjectLoader2.js"></script> -->
+	<script src='build/app.js'></script>
 
-		<link rel='stylesheet' media='screen' href='css/reset.css'/>
-		<link rel='stylesheet' media='screen' href='css/main.css'/>
+	<link rel='stylesheet' media='screen' href='css/reset.css' />
+	<link rel='stylesheet' media='screen' href='css/main.css' />
 
-	</head>
-	<body>
+</head>
+
+<body>
 	<form id='load-files' enctype='multipart/form-data'>
 		<div id='hidden'>
-			<input id='load-file' type='file' multiple='multiple'/>
+			<input id='load-file' type='file' multiple='multiple' />
 		</div>
 		<span>Drag and drop model onto this window or </span>
 		<input id='load-button' type='button' value='browse for model'>
 	</form>
-	</body>
+</body>
+
 </html>

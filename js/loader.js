@@ -1,6 +1,6 @@
 'use strict';
 
-import THREE from 'three';
+import * as THREE from 'three';
 import createModels from 'models3d';
 
 export default function init(callback) {

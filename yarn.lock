@@ -5127,13 +5127,9 @@ ternary-stream@^1.2.0:
     merge-stream "~0.1.6"
     through2 "~0.6.3"
 
-three-collada-loader@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/three-collada-loader/-/three-collada-loader-0.0.1.tgz#47c3885464d74916074d91a0b69e9c660c3c219b"
-
-three@^0.73.0:
-  version "0.73.2"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.73.2.tgz#2a3ebac10de8a1bee65242e3a69fc4c4187c9695"
+three@^0.88.0:
+  version "0.88.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.88.0.tgz#4256c2fc38e4fb23a0d23eba2b6cce4df8e466d5"
 
 throttleit@~0.0.2:
   version "0.0.2"

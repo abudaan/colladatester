@@ -1,6 +1,6 @@
 'use strict';
 
-import THREE from 'three';
+import * as THREE from 'three';
 import OrbitControls from 'lib/OrbitControls';
 
 export default function init() {
