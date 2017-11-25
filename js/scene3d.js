@@ -38,6 +38,8 @@ export default function init() {
   // world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0, color: 0x003300 }));
   world = new THREE.Object3D();
   world.rotation.x -= Math.PI / 2;
+  // world.rotation.x += Math.PI / 2;
+  // world.rotation.x += Math.PI;
   world.position.y = 50;
   world.position.z = 50;
   world.receiveShadow = true;
