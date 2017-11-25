@@ -1,29 +1,31 @@
 var scope = scope || {};
 
 
-window.onload = function() {
+window.onload = function () {
 
 	'use strict';
+
+	THREE.Cache.enabled = true;
 
 	var
 		camera,
 		scene,
 		renderer,
 		light,
-		
+
 		plane,
-		
+
 		width,
-		height;	 
+		height;
 
 
 	function render() {
 		renderer.render(scene, camera);
-		requestAnimationFrame(render); 
+		requestAnimationFrame(render);
 	}
 
-	
-	function onWindowResize(event){
+
+	function onWindowResize(event) {
 		width = window.innerWidth;
 		height = window.innerHeight;
 
@@ -38,7 +40,7 @@ window.onload = function() {
 
 		width = window.innerWidth;
 		height = window.innerHeight;
-		
+
 		scene = new THREE.Scene();
 
 		camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 10000);
@@ -52,37 +54,38 @@ window.onload = function() {
 		// hemisphere.color.setHSL(0.6, 1, 0.6);
 		// hemisphere.groundColor.setHSL(0.095, 1, 0.75);
 		// scene.add(hemisphere);
-		
-		ambient = new THREE.AmbientLight( 0xffffff );
+
+		ambient = new THREE.AmbientLight(0xffffff);
 		scene.add(ambient);
 
 		light = new THREE.DirectionalLight(0xffffff);
 		light.position.set(0, 1000, 200);
 		//light.castShadow = true;
 		//light.shadowCameraVisible = true;
-		
+
 		scene.add(light);
 
 		plane = new THREE.Mesh(
-			new THREE.PlaneGeometry(800,800,10,10), 
+			new THREE.PlaneGeometry(800, 800, 10, 10),
 			//new THREE.MeshBasicMaterial({color:0xa7f0d8, opacity: 0.5, wireframe:false, side:THREE.DoubleSide, transparent: true})
-			new THREE.MeshBasicMaterial({color:0x000000, opacity: 0.5, wireframe:true, side:THREE.DoubleSide})
+			new THREE.MeshBasicMaterial({ color: 0x000000, opacity: 0.5, wireframe: true, side: THREE.DoubleSide })
 		);
 		plane.name = 'plane';
 		scene.add(plane);
 
-		
-		try{
-			renderer = new THREE.WebGLRenderer({antialias: true});
-		}catch(e){
-			renderer = new THREE.CanvasRenderer({antialias: true});
+
+		try {
+			renderer = new THREE.WebGLRenderer({ antialias: true });
+		} catch (e) {
+			renderer = new THREE.CanvasRenderer({ antialias: true });
 		}
-		
-		renderer.setSize(width,height);
+
+		renderer.setSize(width, height);
+		renderer.setClearColor(0xffffff, 1);
 		document.body.appendChild(renderer.domElement);
 
 		window.addEventListener('resize', onWindowResize, false);
-		scope.initControls(plane,light,camera);
+		scope.initControls(plane, light, camera);
 		scope.initLoader(plane);
 	}
 

@@ -1,32 +1,35 @@
 <!doctype html>
 <html>
-	<head>
-		<title>colladatester</title>
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-		<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
-				
-		<script src='lib/three.min.js'></script>     
-		<script src='lib/dat.gui.min.js'></script>     
-		<script src='lib/ColladaLoader.js'></script>		
-		<script src='lib/geometry.js'></script>
 
-		<script src='js/controls.js'></script>
-		<script src='js/loader.js'></script>
-		<script src='js/main.js'></script>
+<head>
+	<title>colladatester</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+	<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 
-		<link rel='stylesheet' media='screen' href='css/reset.css'/>
-		<link rel='stylesheet' media='screen' href='css/main.css'/>
-		
-	</head>
-	<body>
+	<script src='lib/three.min.js'></script>
+	<script src='lib/dat.gui.min.js'></script>
+	<script src='lib/ColladaLoader.js'></script>
+	<script src='lib/geometry.js'></script>
+
+	<script src='js/controls.js'></script>
+	<script src='js/loader.js'></script>
+	<script src='js/main.js'></script>
+
+	<link rel='stylesheet' media='screen' href='css/reset.css' />
+	<link rel='stylesheet' media='screen' href='css/main.css' />
+
+</head>
+
+<body>
 	<div id='drop'>
 		<div id='instruction'></div>
 		<form id='load-files' enctype='multipart/form-data'>
 			<div id='hidden'>
-				<input id='load-file' type='file' multiple='multiple'/>
+				<input id='load-file' type='file' multiple='multiple' />
 			</div>
 			<input id='load-button' type='button' value='or press this button'>
 		</form>
 	</div>
-	</body>
+</body>
+
 </html>
