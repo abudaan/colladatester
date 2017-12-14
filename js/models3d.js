@@ -127,6 +127,7 @@ function fixTextures(model) {
       if (child.material.opacity !== 1) {
         child.material.transparent = true;
         child.material.depthWrite = false;
+        child.material.side = THREE.DoubleSide;
       }
       child.material.needsUpdate = true;
     }

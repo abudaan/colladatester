@@ -11,6 +11,9 @@ window.onload = function () {
   createLoader(function (model) {
     //console.log(model);
     scene3d.add(model);
+    setTimeout(() => {
+      scene3d.render();
+    }, 0);
   });
 
   resize();
