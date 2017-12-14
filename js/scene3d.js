@@ -12,7 +12,7 @@ export default function init() {
   scene = new THREE.Scene();
 
   renderer = new THREE.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
-  renderer.setClearColor(0xffffff, 1);
+  renderer.setClearColor(0xaa0033, 1);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;

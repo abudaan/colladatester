@@ -112,12 +112,22 @@ function getTexturesFromJsonModel(json, textures) {
 
 function fixTextures(model) {
   model.traverse(function (child) {
+    // check if the child has a material and if that material has a texture
     if (child.material && child.material.map) {
-      //console.log(child.material.map);
-      child.material.emissive = new THREE.Color(0, 0, 0);
+      // child.material.emissive = new THREE.Color(0, 0, 0);
       // child.material.map.wrapS = THREE.ClampToEdgeWrapping;
       // child.material.map.wrapT = THREE.ClampToEdgeWrapping;
       // child.material.map.minFilter = THREE.LinearFilter;
+      // console.log(child.material);
+      /*
+        If the opacity is set other than 1, a transparent texture is used.
+        We need to set some additional properties to make the texture look
+        good.
+      */
+      if (child.material.opacity !== 1) {
+        child.material.transparent = true;
+        child.material.depthWrite = false;
+      }
       child.material.needsUpdate = true;
     }
   });
