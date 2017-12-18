@@ -118,18 +118,21 @@ function fixTextures(model) {
       // child.material.map.wrapS = THREE.ClampToEdgeWrapping;
       // child.material.map.wrapT = THREE.ClampToEdgeWrapping;
       // child.material.map.minFilter = THREE.LinearFilter;
-      // console.log(child.material);
       /*
-        If the opacity is set other than 1, a transparent texture is used.
-        We need to set some additional properties to make the texture look
-        good.
+      If the opacity is set other than 1, a transparent texture is used.
+      We need to set some additional properties to make the texture look
+      good.
       */
       if (child.material.opacity !== 1) {
-        child.material.transparent = true;
-        child.material.depthWrite = false;
+        // child.material.depthWrite = false;
+        // child.material.depthTest = false;
+        child.material.alphaTest = 0.5;
+        // child.material.transparent = true;
+        child.material.opacity = 1;
         child.material.side = THREE.DoubleSide;
       }
       child.material.needsUpdate = true;
+      console.log(child.material);
     }
   });
 }

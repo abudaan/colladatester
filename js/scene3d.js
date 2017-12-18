@@ -16,6 +16,7 @@ export default function init() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // renderer.sortObjects = true; -> possibly necessary for transparent textures
 
   camera = new THREE.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
   camera.position.z = 500;
