@@ -1,9 +1,12 @@
 'use strict';
 
-import THREE from 'three';
-import ColladaLoader from 'lib/ColladaLoader';
-// import ColladaLoader from 'three-collada-loader';
-import ObjectLoader2 from 'lib/ObjectLoader2';
+// import THREE from 'three';
+import * as THREE from 'three';
+// import ColladaLoader from 'lib/ColladaLoader';
+import ColladaLoader from 'three-collada-loader';
+// import ObjectLoader2 from 'lib/ObjectLoader2';
+// import OBJLoader from 'lib/OBJLoader';
+
 
 let baseUrl = 'undefined';
 THREE.Cache.clear();
@@ -14,8 +17,8 @@ export default function init(colladasModels, jsonModels, textures, callback) {
   let loader, iterator, model, hasTextures;
 
   if (colladasModels.size >= 1) {
-    loader = new THREE.ColladaLoader();
-    // loader = new ColladaLoader();
+    // loader = new THREE.ColladaLoader();
+    loader = new ColladaLoader();
     iterator = colladasModels.entries();
     let parser = new DOMParser();
     model = parser.parseFromString(iterator.next().value[1], 'text/xml');
@@ -35,7 +38,9 @@ export default function init(colladasModels, jsonModels, textures, callback) {
     console.log(model);
     hasTextures = getTexturesFromJsonModel(model, textures);
     if (model.object !== undefined) {
-      loader = new THREE.ObjectLoader2();
+      // loader = new THREE.ObjectLoader2();
+      loader = new THREE.ObjectLoader();
+      // loader = new THREE.JSONLoader();
       model = loader.parse(model);
       if (model instanceof THREE.Scene) {
         let group = new THREE.Group();

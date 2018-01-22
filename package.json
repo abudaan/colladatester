@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "lodash": "^3.10.1",
-    "three": "^0.73.0"
+    "three": "^0.89",
+    "three-collada-loader": "^0.0.1"
   }
 }

@@ -14,7 +14,6 @@ export default function init(callback) {
 	let fileList, numFiles, currentIndex;
 	let fileType, fileName;
 
-
 	// drag and drop
 	document.addEventListener('dragover', function (e) {
 		e.preventDefault();
