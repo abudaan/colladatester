@@ -222,7 +222,7 @@ THREE.ObjectLoader2.prototype = {
 
         if (textures[name] === undefined) {
 
-          THREE.warn('THREE.ObjectLoader2: Undefined texture', name);
+          console.warn('THREE.ObjectLoader2: Undefined texture', name);
 
         }
 
@@ -353,13 +353,13 @@ THREE.ObjectLoader2.prototype = {
 
         if (data.image === undefined) {
 
-          THREE.warn('THREE.ObjectLoader2: No "image" speficied for', data.uuid);
+          console.warn('THREE.ObjectLoader2: No "image" speficied for', data.uuid);
 
         }
 
         if (images[data.image] === undefined) {
 
-          THREE.warn('THREE.ObjectLoader2: Undefined image', data.image);
+          console.warn('THREE.ObjectLoader2: Undefined image', data.image);
 
         }
 
@@ -402,7 +402,7 @@ THREE.ObjectLoader2.prototype = {
 
         if (geometries[name] === undefined) {
 
-          THREE.warn('THREE.ObjectLoader2: Undefined geometry', name);
+          console.warn('THREE.ObjectLoader2: Undefined geometry', name);
 
         }
 
@@ -414,7 +414,7 @@ THREE.ObjectLoader2.prototype = {
 
         if (materials[name] === undefined) {
 
-          THREE.warn('THREE.ObjectLoader2: Undefined material', name);
+          console.warn('THREE.ObjectLoader2: Undefined material', name);
 
         }
 

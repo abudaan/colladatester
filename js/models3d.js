@@ -5,6 +5,9 @@ import ColladaLoader from 'lib/ColladaLoader';
 // import ColladaLoader from 'three-collada-loader';
 import ObjectLoader2 from 'lib/ObjectLoader2';
 
+// import ObjectLoader2 from 'three-obj-loader';
+// ObjectLoader2(THREE);
+
 let baseUrl = 'undefined';
 THREE.Cache.clear();
 THREE.Cache.enabled = true;
