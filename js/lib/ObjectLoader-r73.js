@@ -3,14 +3,14 @@ import THREE from 'three';
  * @author mrdoob / http://mrdoob.com/
  */
 
-THREE.ObjectLoader = function (manager) {
+console.log('ObjectLoader r73');
 
+THREE.ObjectLoader2 = function (manager) {
     this.manager = (manager !== undefined) ? manager : THREE.DefaultLoadingManager;
     this.texturePath = '';
-
 };
 
-THREE.ObjectLoader.prototype = {
+THREE.ObjectLoader2.prototype = {
 
     constructor: THREE.ObjectLoader,
 

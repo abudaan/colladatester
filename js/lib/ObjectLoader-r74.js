@@ -4,11 +4,10 @@
 
 import THREE from 'three';
 
+console.log('ObjectLoader r74');
 THREE.ObjectLoader2 = function (manager) {
-
     this.manager = (manager !== undefined) ? manager : THREE.DefaultLoadingManager;
     this.texturePath = '';
-
 };
 
 THREE.ObjectLoader2.prototype = {
