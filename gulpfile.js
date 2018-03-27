@@ -142,7 +142,7 @@ function bundle(source_file, watch) {
 
 gulp.task('watch', ['libs', 'scripts'], function (cb) {
 
-    livereload.listen();
+    // livereload.listen();
 
     config.src.script_bundles.forEach(function (source) {
         bundle(source, true);
@@ -203,7 +203,7 @@ gulp.task('minify', ['libs', 'scripts'], function () {
         gulp.src(config.dest.scripts + "/*.js")
             .pipe(plumber())
             .pipe(uglify())
-            .pipe(rename({suffix: '.min'}))
+            .pipe(rename({ suffix: '.min' }))
             .pipe(gulp.dest(config.dest.scripts))
             .pipe(livereload())
     );
