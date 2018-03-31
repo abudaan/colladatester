@@ -7,5 +7,5 @@ Supports colladas with and without textures.
 Supports models in JSON format as well.
 
 
-Check the [live example](http://abumarkub.net/colladatester).
+Check the [live example](https://abudaan.github.io/colladatester).
 
