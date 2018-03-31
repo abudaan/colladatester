@@ -1,10 +1,8 @@
-'use strict';
-
 import THREE from 'three';
-import ColladaLoader from 'lib/ColladaLoader';
+import ColladaLoader from './lib/ColladaLoader';
 // import ColladaLoader from 'three-collada-loader';
 // import ObjectLoader2 from 'lib/ObjectLoader2';
-import ObjectLoader2 from 'lib/ObjectLoader-r73';
+// import ObjectLoader2 from 'lib/ObjectLoader-r73';
 // import ObjectLoader2 from 'lib/ObjectLoader-r74';
 // import ObjectLoader2 from 'lib/ObjectLoader-r75';
 
@@ -41,7 +39,7 @@ export default function init(colladasModels, jsonModels, textures, callback) {
     // console.log(model);
     hasTextures = getTexturesFromJsonModel(model, textures);
     if (model.object !== undefined) {
-      loader = new THREE.ObjectLoader2();
+      loader = new THREE.ObjectLoader();
       model = loader.parse(model);
       console.log(model);
       if (model instanceof THREE.Scene) {
@@ -117,7 +115,7 @@ function getTexturesFromJsonModel(json, textures) {
 }
 
 
-function fixTranparentTexture(child) {
+function fixTransparentTexture(child) {
   if (child.material.opacity !== 1) {
     // child.material.depthWrite = false;
     // child.material.depthTest = false;
@@ -145,7 +143,7 @@ function fixTextures(model) {
       */
       if (child.material.map) {
         child.material.needsUpdate = true;
-        fixTranparentTexture(child);
+        fixTransparentTexture(child);
       } else if (child.material.type === 'MultiMaterial') {
         console.log(child.material.materials);
         // child.material.materials.forEach(mat => {

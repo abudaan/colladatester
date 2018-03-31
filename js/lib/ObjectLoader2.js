@@ -3,6 +3,7 @@ import THREE from 'three';
 /**
  * @author mrdoob / http://mrdoob.com/
  */
+// which version is this?
 
 THREE.ObjectLoader2 = function (manager) {
 

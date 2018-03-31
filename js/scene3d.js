@@ -1,13 +1,13 @@
-'use strict';
-
 import THREE from 'three';
-import OrbitControls from 'lib/OrbitControls';
+import OrbitControls from './lib/OrbitControls';
 
 export default function init() {
-
-  let camera, scene;
-  let renderer, controls;
-  let world, spot;
+  let camera,
+    scene;
+  let renderer,
+    controls;
+  let world,
+    spot;
 
   scene = new THREE.Scene();
 
@@ -47,18 +47,18 @@ export default function init() {
   world.receiveShadow = true;
   scene.add(world);
 
-  let light = new THREE.HemisphereLight(0xffffff, 0x000000, 0.6);
+  const light = new THREE.HemisphereLight(0xffffff, 0x000000, 0.6);
   scene.add(light);
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.keys = {};
-  controls.addEventListener('change', function () {
+  controls.addEventListener('change', () => {
     render();
   });
 
 
   function resize(width, height) {
-    //console.log(width,height);
+    // console.log(width,height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
@@ -80,14 +80,14 @@ export default function init() {
 
 
   return {
-    clear: clear,
-    render: render,
-    resize: resize,
+    clear,
+    render,
+    resize,
     domElement: renderer.domElement,
-    add: function (model) {
+    add(model) {
       clear();
       world.add(model);
       render();
-    }
+    },
   };
 }
