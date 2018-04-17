@@ -5973,30 +5973,24 @@ var _OrbitControls2 = _interopRequireDefault(_OrbitControls);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function init() {
-  var camera = void 0,
-      scene = void 0;
-  var renderer = void 0,
-      controls = void 0;
-  var world = void 0,
-      spot = void 0;
+  var scene = new _three2.default.Scene();
 
-  scene = new _three2.default.Scene();
-
-  renderer = new _three2.default.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
-  renderer.setClearColor(0xaa0033, 1);
-  // renderer.setClearColor(0xffffff, 1);
+  var renderer = new _three2.default.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
+  // renderer.setClearColor(0xaa0033, 1);
+  // renderer.setClearColor(0xaa0033, 1);
+  renderer.setClearColor(0xffffff, 1);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
   renderer.shadowMap.type = _three2.default.PCFSoftShadowMap;
   // renderer.sortObjects = true; -> possibly necessary for transparent textures
 
-  camera = new _three2.default.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
+  var camera = new _three2.default.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
   camera.position.z = 500;
   camera.position.x = 0;
   camera.position.y = 300;
   camera.lookAt(new _three2.default.Vector3(0, 0, 0));
 
-  spot = new _three2.default.SpotLight(0xffffff, 1);
+  var spot = new _three2.default.SpotLight(0xffffff, 1);
   spot.position.set(300, 300, 300);
   spot.target.position.set(0, 0, 0);
   spot.shadowCameraNear = 1;
@@ -6009,7 +6003,7 @@ function init() {
   scene.add(spot);
 
   // world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0, color: 0x003300 }));
-  world = new _three2.default.Object3D();
+  var world = new _three2.default.Object3D();
   world.rotation.x -= Math.PI / 2;
   // world.rotation.x += Math.PI / 2;
   // world.rotation.x += Math.PI;
@@ -6021,7 +6015,7 @@ function init() {
   var light = new _three2.default.HemisphereLight(0xffffff, 0x000000, 0.6);
   scene.add(light);
 
-  controls = new _three2.default.OrbitControls(camera, renderer.domElement);
+  var controls = new _three2.default.OrbitControls(camera, renderer.domElement);
   controls.keys = {};
   controls.addEventListener('change', function () {
     render();

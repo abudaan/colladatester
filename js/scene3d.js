@@ -2,30 +2,24 @@ import THREE from 'three';
 import OrbitControls from './lib/OrbitControls';
 
 export default function init() {
-  let camera,
-    scene;
-  let renderer,
-    controls;
-  let world,
-    spot;
+  const scene = new THREE.Scene();
 
-  scene = new THREE.Scene();
-
-  renderer = new THREE.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
-  renderer.setClearColor(0xaa0033, 1);
-  // renderer.setClearColor(0xffffff, 1);
+  const renderer = new THREE.WebGLRenderer({ autoClear: true, antialias: true, alpha: true });
+  // renderer.setClearColor(0xaa0033, 1);
+  // renderer.setClearColor(0xaa0033, 1);
+  renderer.setClearColor(0xffffff, 1);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   // renderer.sortObjects = true; -> possibly necessary for transparent textures
 
-  camera = new THREE.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
+  const camera = new THREE.PerspectiveCamera(50, 1, 1, 3000); // correct aspect of camera is set in resize method, see below
   camera.position.z = 500;
   camera.position.x = 0;
   camera.position.y = 300;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-  spot = new THREE.SpotLight(0xffffff, 1);
+  const spot = new THREE.SpotLight(0xffffff, 1);
   spot.position.set(300, 300, 300);
   spot.target.position.set(0, 0, 0);
   spot.shadowCameraNear = 1;
@@ -38,7 +32,7 @@ export default function init() {
   scene.add(spot);
 
   // world = new THREE.Mesh(new THREE.PlaneBufferGeometry(200, 200, 10, 10), new THREE.MeshBasicMaterial({ opacity: 0, color: 0x003300 }));
-  world = new THREE.Object3D();
+  const world = new THREE.Object3D();
   world.rotation.x -= Math.PI / 2;
   // world.rotation.x += Math.PI / 2;
   // world.rotation.x += Math.PI;
@@ -50,7 +44,7 @@ export default function init() {
   const light = new THREE.HemisphereLight(0xffffff, 0x000000, 0.6);
   scene.add(light);
 
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.keys = {};
   controls.addEventListener('change', () => {
     render();
